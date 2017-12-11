@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jhsports.user.mapper.AppMapper">
+
+    <resultMap id="appMap" type="com.jhsports.user.entity.App">
+        <id column="Id" property="id" />
+        <result column="Name" property="name" />
+        <result column="IPSet" property="ipSet" />
+        <result column="IsWork" property="isWork" />
+        <result column="Logo" property="logo" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="appMap">
+        SELECT `Id`, `Name`, `IPSet`, `IsWork`, `Logo`
+        FROM `app`
+        WHERE `IsWork`=1;
+    </select>
+</mapper>
