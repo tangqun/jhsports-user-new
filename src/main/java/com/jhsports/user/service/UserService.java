@@ -305,6 +305,11 @@ public class UserService {
             Date dt = new Date();
             Date dt2 = new Date(dt.getTime() - 30 * 60 * 1000);
 
+            UnionUser unionUser = unionUserMapper.selectByMobileNum(mobileNum);
+            if (unionUser != null) {
+                return new RESTful(CodeEnum.MobileNumHasBeenRegistered);
+            }
+
             RESTful sv_SMSCode = serverValidateSMSCode(appId, mobileNum, code, dt2);
             if (sv_SMSCode.getCode() != 0) {
                 return sv_SMSCode;
@@ -312,19 +317,19 @@ public class UserService {
 
             password = PasswordHelper.encrypto(password, "9hxyz", false);
 
-            UnionUser unionUser = new UnionUser();
+            UnionUser unionUser2 = new UnionUser();
             String unionUserId = UUID.randomUUID().toString();
-            unionUser.setId(unionUserId);
-            unionUser.setAppId(appId);
-            unionUser.setMobileNum(mobileNum);
-            unionUser.setPassword(password);
-            unionUser.setSalt("9hxyz");
-            unionUser.setIsOld(false);
-            unionUser.setAuthorizedTypeId(AuthorizedTypeEnum.Mobile.getAuthorizedType());
-            unionUser.setBindState(BindStateEnum.HasBeenBound.getBindState());
-            unionUser.setState(StateEnum.Normal.getState());
-            unionUser.setCreateTime(dt);
-            unionUserMapper.insert(unionUser);
+            unionUser2.setId(unionUserId);
+            unionUser2.setAppId(appId);
+            unionUser2.setMobileNum(mobileNum);
+            unionUser2.setPassword(password);
+            unionUser2.setSalt("9hxyz");
+            unionUser2.setIsOld(false);
+            unionUser2.setAuthorizedTypeId(AuthorizedTypeEnum.Mobile.getAuthorizedType());
+            unionUser2.setBindState(BindStateEnum.HasBeenBound.getBindState());
+            unionUser2.setState(StateEnum.Normal.getState());
+            unionUser2.setCreateTime(dt);
+            unionUserMapper.insert(unionUser2);
 
             AppToken appToken = new AppToken();
             String tokenValue = UUID.randomUUID().toString();
