@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jhsports.user.config.ProjConfig;
 import com.jhsports.user.entity.*;
 import com.jhsports.user.entity.enums.*;
-import com.jhsports.user.helper.*;
+import com.jhsports.user.util.*;
 import com.jhsports.user.mapper.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

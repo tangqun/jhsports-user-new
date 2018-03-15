@@ -1,4 +1,4 @@
-package com.jhsports.user.helper;
+package com.jhsports.user.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
